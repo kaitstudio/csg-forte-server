@@ -72,6 +72,20 @@ app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
+// Add this before app.listen()
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'CSG Forte Server is running!',
+    endpoints: {
+      health: '/health',
+      generateSignature: '/generate-signature (POST)'
+    }
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
